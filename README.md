@@ -12,7 +12,7 @@ Additionally, not all commands are saved in shell history. If you have some keyb
 
 This gives me finer control on what gets logged, so I can analysis on it later from [`HPI`](https://github.com/seanbreckenridge/HPI).
 
-One could also just use this to log generic events. `ttt_log` just saves whatever arguments you pass it with some metadata about where/when, so could be used to track habits/my behaviour like:
+One could also just use this to log generic events. `tttlog` just saves whatever arguments you pass it with some metadata about where/when, so could be used to track habits/my behaviour like:
 
 ```
 #!/bin/sh
@@ -22,7 +22,7 @@ One could also just use this to log generic events. `ttt_log` just saves whateve
 
 while true; do
   if MEDIA_PATH="$(mpv-currently-playing)"; do
-    ttt_log "mpv_playing_media:$MEDIA_PATH"
+    tttlog "mpv_playing_media:$MEDIA_PATH"
   fi
   sleep 60
 done
@@ -32,12 +32,12 @@ done
 
 This consists of:
   - `ttt` (the wrapper shell script)
-  - `ttt_log` (log metadata to the history file)
+  - `tttlog` (log metadata to the history file)
 
 The point here is to be transparent. So, at the top of any script which I want to log, I add the line:
 
 ```
-command -v ttt >/dev/null 2>&1 && ttt_log "$@"
+command -v ttt >/dev/null 2>&1 && tttlog "$@"
 ```
 
 If I'm launching the command with a keybinding or from another program that accepts a command as input (e.g. [`rifle`](https://github.com/ranger/ranger) (my file manager) or from my [`window manager`](https://i3wm.org/), I'd modify the line like:
@@ -57,10 +57,10 @@ That *does* mean that the command would fail if `ttt` isn't installed, but I'm w
 
 ## Install
 
-Copy `ttt` onto your path, and `go get` `ttt_log`.
+Copy `ttt` onto your path, and `go get` `tttlog`.
 
 ```
 ```
 
-You can change which file `ttt_log` writes to by setting the `TTT_HISTFILE` environment variable.
+You can change which file `tttlog` writes to by setting the `TTT_HISTFILE` environment variable.
 
