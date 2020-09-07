@@ -16,23 +16,7 @@ Shell history is nice, but it doesn't provide me context; like what directory wa
 
 Additionally, not all commands are saved in shell history. If you have some keybinding to launch a script/application, or force-quit the terminal without exiting, your commands don't get saved in your shell history.
 
-This gives me finer control on what gets logged, so I can analysis on it later from [`HPI`](https://github.com/seanbreckenridge/HPI#readme).
-
-One could also just use this to log generic events. `tttlog` just saves whatever arguments you pass it with some metadata about where/when, so could be used to track habits/my behaviour like:
-
-```
-#!/bin/sh
-
-# every minute, if I'm watching something, save what movie/music I'm listening to
-# using my https://github.com/seanbreckenridge/mpv-sockets script
-
-while true; do
-  if MEDIA_PATH="$(mpv-currently-playing)"; do
-    tttlog "mpv_playing_media:$MEDIA_PATH"
-  fi
-  sleep 60
-done
-```
+This gives me finer control on what gets logged, so I can do analysis on it later from [`HPI`](https://github.com/seanbreckenridge/HPI#readme).
 
 ## How?
 
@@ -43,7 +27,7 @@ This consists of:
 The point here is to be transparent and easy to add. So, at the top of any script which I want to log, I add the line:
 
 ```
-command -v ttt >/dev/null 2>&1 && tttlog "$@"
+command -v tttlog >/dev/null 2>&1 && tttlog "$(basename "$0") $@"
 ```
 
 If I'm launching the command with a keybinding or from another program that accepts a command as input (e.g. [`rifle`](https://github.com/ranger/ranger) (my file manager) or from my [`window manager`](https://i3wm.org/), I'd modify the line like:
@@ -72,6 +56,23 @@ As an example of what this logs to the CSV file:
 1599517125,/home/sean/Repos/ttt,"some multi
 line command"
 ```
+
+One could also just use this to log generic events. `tttlog` just saves whatever arguments you pass it with some metadata about where/when, so could be used to track habits/my behaviour like:
+
+```
+#!/bin/sh
+
+# every minute, if I'm watching something, save what movie/music I'm listening to
+# using my https://github.com/seanbreckenridge/mpv-sockets script
+
+while true; do
+  if MEDIA_PATH="$(mpv-currently-playing)"; do
+    tttlog "mpv_playing_media:$MEDIA_PATH"
+  fi
+  sleep 60
+done
+```
+
 
 ## Install
 
