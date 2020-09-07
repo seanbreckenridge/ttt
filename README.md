@@ -61,7 +61,7 @@ bindsym $mod+f exec ttt firefox-developer-edition
 
 That *does* mean that the command would fail if `ttt` isn't installed, but I'm willing to live with that.
 
-If this can't find the current working directory (i.e. if you deleted the current directory and called it from there), it sets '-', which signifies an error.
+If this can't find the current working directory (i.e. if you deleted the current directory and called it from there), it sets `-`, which signifies an error.
 
 I recommend you symlink `#!/bin/sh` to something faster than `bash`, like `dash`, to improve startup times. See [`here`](https://wiki.archlinux.org/index.php/Dash) for more info.
 
@@ -117,3 +117,10 @@ Benchmark #3: /home/sean/Repos/ttt/test/../ttt printf hi >/dev/null
   Time (mean ± σ):       3.8 ms ±   0.7 ms    [User: 2.3 ms, System: 2.3 ms]
   Range (min … max):     2.3 ms …   5.8 ms    522 runs
 ```
+
+#### ttt?
+
+Naming things relating to shell history/logging is hard...
+
+I just wanted something that would be easy to type, so I can add it to wherever I want quickly. Is just the first thing that came to mind, when I was trying to figure out how to track rifle/i3 bindsyms; 'track the things'
+
