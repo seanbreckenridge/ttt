@@ -65,13 +65,30 @@ If this can't find the current working directory (i.e. if you deleted the curren
 
 I recommend you symlink `#!/bin/sh` to something faster than `bash`, like `dash`, to improve startup times. See [`here`](https://wiki.archlinux.org/index.php/Dash) for more info.
 
-## Install
-
-Copy `ttt` onto your path, and `go get` `tttlog`.
+As an example of what this logs to the CSV file:
 
 ```
-curl -Lo ~/.local/bin <url>
-go get -u "gitlab.com/seanbreckenridge/ttt"
+1599517118,/home/sean/Repos/ttt,printf hello
+1599517125,/home/sean/Repos/ttt,"some multi
+line command"
+```
+
+## Install
+
+Download and install the scripts!
+
+Requires `go`
+
+```bash
+# create temp dir
+mkdir /tmp/install-ttt
+cd /tmp/install-ttt
+# download the scripts
+wget "https://raw.githubusercontent.com/seanbreckenridge/ttt/master/tttlog.go"  "https://raw.githubusercontent.com/seanbreckenridge/ttt/master/ttt"
+chmod +x ./ttt
+# copy ttt onto your $PATH
+cp ./ttt ~/.local/bin
+go install ./tttlog.go
 ```
 
 You can change which file `tttlog` writes to by setting the `TTT_HISTFILE` environment variable.
