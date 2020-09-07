@@ -73,6 +73,7 @@ while true; do
 done
 ```
 
+For examples of where this is used in my [dotfiles](https://github.com/seanbreckenridge/dotfiles/), see [here](https://gist.github.com/seanbreckenridge/996126c45a4b3ed10941c7f190ac0605).
 
 ## Install
 
