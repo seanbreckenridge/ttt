@@ -1,0 +1,43 @@
+#!/bin/bash
+
+cd "$(realpath "$(dirname "${BASH_SOURCE[0]}")")"
+
+# build
+go build ../tttlog.go || exit $?
+
+real() {
+	echo "$(realpath .)/$1"
+}
+
+# setup
+TTTSCRIPT="$(real)../ttt"
+TTTCMD="$(real tttlog)"
+TTTDIR="$(real directory)"
+[[ -d "$TTTDIR" ]] && rm -rf "$TTTDIR"
+
+# remove histfile
+declare -rx TTT_HISTFILE="$(real histfile.csv)"
+rm -f "$TTT_HISTFILE"
+
+echo "Running some writes..."
+# try some basic writes
+"$TTTCMD" "a command"
+"$TTTCMD" "a multi
+line command"
+
+# make a directory and delete it, to test writing '-'
+mkdir "$TTTDIR"
+cd "$TTTDIR" || exit $?
+rm -rfv "$(realpath .)"
+"$TTTCMD" "should be -"
+
+cd ..
+pytest ./test_assert.py || exit $?
+echo 'Done with tests!'
+
+rm "$TTT_HISTFILE"
+
+# include /bin/sh and command were running (printf hi), so we can subtract from output
+hyperfine --warmup 10 --show-output '/bin/sh' 'printf hi >/dev/null' "$TTTSCRIPT printf hi >/dev/null"  # : is a no-op
+
+rm "$TTT_HISTFILE"
