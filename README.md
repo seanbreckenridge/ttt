@@ -49,7 +49,7 @@ If this can't find the current working directory (i.e. if you deleted the curren
 
 I recommend you symlink `#!/bin/sh` to something faster than `bash`, like `dash`, to improve startup times. See [`here`](https://wiki.archlinux.org/index.php/Dash) for more info.
 
-As an example of what this logs to the CSV file:
+An example of what this logs to the CSV file:
 
 ```
 1599517118,/home/sean/Repos/ttt,printf hello
@@ -97,7 +97,7 @@ You can change which file `tttlog` writes to by setting the `TTT_HISTFILE` envir
 
 ### Tests
 
-```
+```bash
 cd test
 ./test
 ```
