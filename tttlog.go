@@ -32,6 +32,10 @@ func getWorkingDirectory() string {
 	return cwd
 }
 
+func getEpochTime() string {
+	return strconv.FormatInt(time.Now().Unix(), 10)
+}
+
 func addToFile(histfile string, data []string) {
 	f, err := os.OpenFile(histfile, os.O_WRONLY|os.O_CREATE|os.O_APPEND, 0644)
 	if err != nil {
@@ -41,10 +45,6 @@ func addToFile(histfile string, data []string) {
 	w := csv.NewWriter(f)
 	w.Write(data)
 	w.Flush()
-}
-
-func getEpochTime() string {
-	return strconv.FormatInt(time.Now().Unix(), 10)
 }
 
 func main() {
