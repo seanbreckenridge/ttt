@@ -52,9 +52,10 @@ I recommend you symlink `#!/bin/sh` to something faster than `bash`, like `dash`
 An example of what this logs to the CSV file:
 
 ```
-1599517118,/home/sean/Repos/ttt,printf hello
-1599517125,/home/sean/Repos/ttt,"some multi
-line command"
+1599523020,/home/sean/Repos/ttt,fzf-cd /home/sean/Repos/ttt
+1599523021,/home/sean/Repos/ttt,nvim ./tttlog.go
+1599523446,/home/sean,alacritty
+1599523626,/home/sean,keepassxc
 ```
 
 One could also just use this to log generic events. `tttlog` just saves whatever arguments you pass it with some metadata about where/when, so could be used to track habits/my behaviour like:
