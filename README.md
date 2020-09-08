@@ -105,7 +105,7 @@ cd test
 
 ### Benchmarks
 
-Just to have some numbers here, the overhead that `ttt` (wrapper shell script running `ttt`) causes is about `3ms`
+Just to have some numbers here, the overhead that `ttt` (wrapper shell script running `tttlog`) causes is about `3ms`
 
 ```
 Benchmark #1: /bin/sh
