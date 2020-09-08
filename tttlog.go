@@ -16,8 +16,7 @@ func getHistoryFile() (histfile string) {
 	if histfile == "" {
 		data_dir := os.Getenv("XDG_DATA_HOME")
 		if data_dir == "" {
-			home := os.Getenv("HOME")
-			data_dir = path.Join(home, ".local", "share")
+			data_dir = path.Join(os.Getenv("HOME"), ".local", "share")
 		}
 		histfile = path.Join(data_dir, "ttt_history.csv")
 	}
