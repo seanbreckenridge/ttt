@@ -30,7 +30,7 @@ The point here is to be transparent and easy to add. So, at the top of any scrip
 command -v tttlog >/dev/null 2>&1 && tttlog "$(basename "$0") $@"
 ```
 
-If I'm launching the command with a keybinding or from another program that accepts a command as input (e.g. [`rifle`](https://github.com/ranger/ranger) (my file manager) or from my [`window manager`](https://i3wm.org/), I'd modify the line like:
+If I'm launching the command with a keybinding or from another program that accepts a command as input (e.g. [`rifle`](https://github.com/ranger/ranger) (my file manager) or from my [`window manager`](https://i3wm.org/), I'd modify the line from:
 
 ```
 # launch firefox
