@@ -93,7 +93,7 @@ cp ./ttt ~/.local/bin
 go install ./tttlog.go
 ```
 
-You can change which file `tttlog` writes to by setting the `TTT_HISTFILE` environment variable.
+You can change which file `tttlog` writes to by setting the `TTT_HISTFILE` environment variable. The default location is `${XDG_DATA_HOME:-$HOME/.local/bin}/ttt_history.csv`
 
 ### Tests
 
