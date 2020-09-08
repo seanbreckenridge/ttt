@@ -38,6 +38,6 @@ echo 'Done with tests!'
 rm "$TTT_HISTFILE"
 
 # include /bin/sh and command were running (printf hi), so we can subtract from output
-hyperfine --warmup 10 --show-output '/bin/sh' 'printf hi >/dev/null' "$TTTSCRIPT printf hi >/dev/null"  # : is a no-op
+hyperfine --warmup 10 --show-output '/bin/sh' 'printf hi >/dev/null' "$TTTSCRIPT printf hi >/dev/null"
 
 rm "$TTT_HISTFILE"
