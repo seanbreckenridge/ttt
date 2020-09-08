@@ -78,21 +78,14 @@ For examples of where this is used in my [dotfiles](https://github.com/seanbreck
 
 ## Install
 
-Download and install the scripts!
-
 Requires `go`
 
 ```bash
-# create temp dir
-mkdir /tmp/install-ttt
-cd /tmp/install-ttt
-# download the scripts
-wget "https://raw.githubusercontent.com/seanbreckenridge/ttt/master/tttlog.go"  "https://raw.githubusercontent.com/seanbreckenridge/ttt/master/ttt"
-chmod +x ./ttt
-# copy ttt onto your $PATH
-cp ./ttt ~/.local/bin
-go install ./tttlog.go
+git clone "https://github.com/seanbreckenridge/ttt" && cd ./ttt
+make
 ```
+
+You could also just download `ttt` onto your `$PATH`, and `wget`/`go install` `tttlog.go` manually.
 
 You can change which file `tttlog` writes to by setting the `TTT_HISTFILE` environment variable. The default location is `${XDG_DATA_HOME:-$HOME/.local/bin}/ttt_history.csv`
 
