@@ -1,6 +1,6 @@
 # ttt
 
-Logs metadata for shell commands; an extension to my shell history.
+Logs metadata for shell scripts/invocations; an extension to my shell history.
 
 This is essentially a wrapper script to store metadata. The wrapper script `ttt` takes any other command as input, stores some metadata about it in a history file, and then runs the command as normal. Its quite literally:
 
