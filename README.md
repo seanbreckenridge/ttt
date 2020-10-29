@@ -4,7 +4,7 @@ Logs metadata for shell scripts/invocations; an extension to my shell history.
 
 This is essentially a wrapper script to store metadata. The wrapper script `ttt` takes any other command as input, stores some metadata about it in a history file, and then runs the command as normal. Its quite literally:
 
-```
+```bash
 #!/bin/sh
 tttlog "$@"
 exec "$@"
@@ -21,8 +21,9 @@ This gives me finer control on what gets logged, so I can do analysis on it late
 ## How?
 
 This consists of:
-  - `ttt` (the wrapper shell script)
-  - `tttlog` (log metadata to the history file)
+
+- `ttt` (the wrapper shell script)
+- `tttlog` (log metadata to the history file)
 
 The point here is to be transparent and easy to add. So, at the top of any script which I want to log, I add the line:
 
@@ -43,7 +44,7 @@ bindsym $mod+f exec firefox-developer-edition
 bindsym $mod+f exec ttt firefox-developer-edition
 ```
 
-That *does* mean that the command would fail if `ttt` isn't installed, but I'm willing to live with that.
+That _does_ mean that the command would fail if `ttt` isn't installed, but I'm willing to live with that.
 
 If this can't find the current working directory (i.e. if you deleted the current directory and called it from there), it sets `-`, which signifies an error.
 
@@ -51,7 +52,7 @@ I recommend you symlink `#!/bin/sh` to something faster than `bash`, like `dash`
 
 An example of what this logs to the CSV file:
 
-```
+```csv
 1599523020,/home/sean/Repos/ttt,fzf-cd /home/sean/Repos/ttt
 1599523021,/home/sean/Repos/ttt,nvim ./tttlog.go
 1599523446,/home/sean,alacritty
@@ -60,7 +61,7 @@ An example of what this logs to the CSV file:
 
 One could also just use this to log generic events. `tttlog` just saves whatever arguments you pass it with some metadata about where/when, so could be used to track habits/my behaviour like:
 
-```
+```bash
 #!/bin/sh
 
 # every minute, if I'm watching something, save what movie/music I'm listening to
@@ -85,7 +86,7 @@ git clone "https://github.com/seanbreckenridge/ttt" && cd ./ttt
 make
 ```
 
-You could also just download `ttt` onto your `$PATH`, and `wget`/`go install` `tttlog.go` manually.
+You could also just `wget ttt` onto your `$PATH`, and `go install tttlog.go` manually.
 
 You can change which file `tttlog` writes to by setting the `TTT_HISTFILE` environment variable. The default location is `${XDG_DATA_HOME:-$HOME/.local/share}/ttt_history.csv`
 
@@ -119,4 +120,3 @@ Benchmark #3: /home/sean/Repos/ttt/test/../ttt printf hi >/dev/null
 Naming things relating to shell history/logging is hard...
 
 I just wanted something that would be easy to type, so I can add it to wherever I want quickly. Is just the first thing that came to mind, when I was trying to figure out how to track rifle/i3 bindsyms; 'track the things'
-
