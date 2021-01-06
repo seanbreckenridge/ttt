@@ -16,6 +16,8 @@ Shell history is nice, but it doesn't provide me context; like what directory wa
 
 Additionally, not all commands are saved in shell history. If you have some keybinding to launch a script/application, or force-quit the terminal without exiting, your commands don't get saved in your shell history.
 
+Since this logs the directory, I can also use it to [jump to directories I visit often](https://github.com/seanbreckenridge/dotfiles/commit/5ce6950123f198425042eb4251ef2bc26bf6d0b7)
+
 This gives me finer control on what gets logged, so I can do analysis on it later from [`HPI`](https://github.com/seanbreckenridge/HPI#readme).
 
 ## How?
