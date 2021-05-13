@@ -12,9 +12,9 @@ exec "$@"
 
 ## But Why?
 
-Shell history is nice, but it doesn't provide me context; like what directory was this command run in?
+Shell history is nice, but not all commands are run through directly through the shell - so its not possible to track them. If you have some keybinding to launch a script/application, or force-quit the terminal without exiting, your commands don't get saved in your shell history.
 
-Additionally, not all commands are saved in shell history. If you have some keybinding to launch a script/application, or force-quit the terminal without exiting, your commands don't get saved in your shell history.
+This also provides me with context; like what directory was this command run in?
 
 Since this logs the directory, I can also use it to [jump to directories I visit often](https://github.com/seanbreckenridge/dotfiles/commit/5ce6950123f198425042eb4251ef2bc26bf6d0b7)
 
@@ -27,11 +27,13 @@ This consists of:
 - `ttt` (the wrapper shell script)
 - `tttlog` (log metadata to the history file)
 
-The point here is to be transparent and easy to add. So, at the top of any script which I want to log, I add the line:
+The point here is to be transparent and easy to add. So, at the top of any shell script which I want to log, I add something like:
 
 ```
-command -v tttlog >/dev/null 2>&1 && tttlog "$(basename "$0") $@"
+command -v tttlog >/dev/null 2>&1 && tttlog "$(basename "$0")" "$@"
 ```
+
+(... that way it doesn't error if `tttlog` isn't installed)
 
 If I'm launching the command with a keybinding or from another program that accepts a command as input (e.g. [`rifle`](https://github.com/ranger/ranger) (my file manager) or from my [`window manager`](https://i3wm.org/), I'd modify the line from:
 
@@ -55,7 +57,6 @@ I recommend you symlink `#!/bin/sh` to something faster than `bash`, like `dash`
 An example of what this logs to the CSV file:
 
 ```csv
-1599523020,/home/sean/Repos/ttt,fzf-cd /home/sean/Repos/ttt
 1599523021,/home/sean/Repos/ttt,nvim ./tttlog.go
 1599523446,/home/sean,alacritty
 1599523626,/home/sean,keepassxc
@@ -88,7 +89,7 @@ git clone "https://github.com/seanbreckenridge/ttt" && cd ./ttt
 make
 ```
 
-You could also just `wget ttt` onto your `$PATH`, and `go install tttlog.go` manually.
+You could also just `wget` the `ttt` script onto your `$PATH`, and `go install tttlog.go` manually.
 
 You can change which file `tttlog` writes to by setting the `TTT_HISTFILE` environment variable. The default location is `${XDG_DATA_HOME:-$HOME/.local/share}/ttt_history.csv`
 
