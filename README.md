@@ -12,7 +12,7 @@ exec "$@"
 
 ## But Why?
 
-Shell history is nice, but not all commands are run through directly through the shell - so its not possible to track them. If you have some keybinding to launch a script/application, or force-quit the terminal without exiting, your commands don't get saved in your shell history.
+Shell history is nice, but not all commands are run directly through the shell - so its not possible to track them. If you have some keybinding to launch a script/application, or force-quit the terminal without exiting, your commands don't get saved in your shell history.
 
 This also provides me with context; like what directory was this command run in?
 
