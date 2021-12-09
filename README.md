@@ -27,7 +27,7 @@ This consists of:
 - `ttt` (the wrapper shell script)
 - `tttlog` (log metadata to the history file)
 
-The point here is to be transparent and easy to add. So, at the top of any shell script which I want to log, I add something like:
+At the top of any shell script which I want to log, I add something like:
 
 ```
 command -v tttlog >/dev/null 2>&1 && tttlog "$(basename "$0")" "$@"
