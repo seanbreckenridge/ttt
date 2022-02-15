@@ -89,7 +89,7 @@ git clone "https://github.com/seanbreckenridge/ttt" && cd ./ttt
 make
 ```
 
-You could also just `wget` the `ttt` script onto your `$PATH`, and `go install tttlog.go` manually.
+or with [`bpkg`](https://github.com/bpkg/bpkg): `bpkg install -g seanbreckenridge/ttt`
 
 You can change which file `tttlog` writes to by setting the `TTT_HISTFILE` environment variable. The default location is `${XDG_DATA_HOME:-$HOME/.local/share}/ttt_history.csv`
 
