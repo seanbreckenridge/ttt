@@ -16,7 +16,11 @@ func getHistoryFile() (histfile string) {
 	if histfile == "" {
 		data_dir := os.Getenv("XDG_DATA_HOME")
 		if data_dir == "" {
-			data_dir = path.Join(os.Getenv("HOME"), ".local", "share")
+			homedir, err := os.UserHomeDir()
+			if err != nil {
+				log.Fatalf("Could not get user home dir %s\n", err)
+			}
+			data_dir = path.Join(homedir, ".local", "share")
 		}
 		histfile = path.Join(data_dir, "ttt_history.csv")
 	}
@@ -35,17 +39,24 @@ func getEpochTime() string {
 	return strconv.FormatInt(time.Now().Unix(), 10)
 }
 
-func addToFile(histfile string, data []string) {
+func addToFile(histfile string, data []string) error {
 	f, err := os.OpenFile(histfile, os.O_WRONLY|os.O_CREATE|os.O_APPEND, 0644)
 	if err != nil {
-		log.Fatalf("%s\n", err)
+		return err
 	}
 	defer f.Close()
 	w := csv.NewWriter(f)
-	w.Write(data)
+	err = w.Write(data)
+	if err != nil {
+		return err
+	}
 	w.Flush()
+	return nil
 }
 
 func main() {
-	addToFile(getHistoryFile(), []string{getEpochTime(), getWorkingDirectory(), strings.Join(os.Args[1:], " ")})
+	err := addToFile(getHistoryFile(), []string{getEpochTime(), getWorkingDirectory(), strings.Join(os.Args[1:], " ")})
+	if err != nil {
+		log.Fatalf("%s\n", err)
+	}
 }
