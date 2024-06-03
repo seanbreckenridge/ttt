@@ -16,7 +16,7 @@ Shell history is nice, but not all commands are run directly through the shell -
 
 This also provides me with context; like what directory was this command run in?
 
-Since this logs the directory, I can also use it to [jump to directories I visit often](https://github.com/seanbreckenridge/dotfiles/commit/5ce6950123f198425042eb4251ef2bc26bf6d0b7)
+When I started using [`z`](https://github.com/rupa/z), also made it incredibly easy to [create an initial database with years of history](https://github.com/seanbreckenridge/HPI-personal/blob/master/scripts/z-init-database)
 
 This gives me finer control on what gets logged, so I can do analysis on it later from [`HPI`](https://github.com/seanbreckenridge/HPI#readme).
 
